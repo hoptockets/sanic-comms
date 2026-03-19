@@ -103,7 +103,19 @@ function Picker(
     middleware: [offset(5), flip(), shift()],
   });
 
-  function onMouseDown() {
+  function onMouseDown(event: MouseEvent) {
+    const target = event.target as Node | null;
+    if (!target) return;
+
+    const floatingEl = floating();
+    const anchorEl = props.anchor();
+    if (
+      (floatingEl && floatingEl.contains(target)) ||
+      (anchorEl && anchorEl.contains(target))
+    ) {
+      return;
+    }
+
     props.setShow();
   }
 
@@ -155,9 +167,16 @@ function Picker(
  */
 const Base = styled("div", {
   base: {
-    width: "400px",
-    height: "400px",
-    // paddingInlineEnd: "5px",
+    width: "min(92vw, 440px)",
+    height: "min(62vh, 430px)",
+    minHeight: "330px",
+    zIndex: 2000,
+
+    mdDown: {
+      width: "min(96vw, 420px)",
+      height: "min(56vh, 390px)",
+      minHeight: "300px",
+    },
   },
 });
 
@@ -181,10 +200,13 @@ const Container = styled("div", {
     padding: "var(--gap-md) 0",
 
     borderRadius: "var(--borderRadius-lg)",
+    border: "1px solid var(--line2)",
     color: "var(--md-sys-color-on-surface)",
     fill: "var(--md-sys-color-on-surface)",
-    boxShadow: "0 0 3px var(--md-sys-color-shadow)",
-    background: "var(--md-sys-color-surface-container)",
+    boxShadow: "0 24px 80px rgba(0, 0, 0, 0.45)",
+    backdropFilter: "blur(18px)",
+    background:
+      "radial-gradient(800px 420px at 10% 0%, color-mix(in oklab, var(--cyan) 20%, transparent), transparent 65%), linear-gradient(180deg, var(--glass2), var(--glass))",
   },
 });
 

@@ -131,7 +131,8 @@ export class Settings extends AbstractStore<"settings", TypeSettings> {
    */
   default(): TypeSettings {
     return {
-      "appearance:unicode_emoji": "fluent-3d",
+      // Twemoji has the broadest coverage and fewer missing glyphs.
+      "appearance:unicode_emoji": "twemoji",
       "appearance:show_send_button": true,
       "appearance:compact_mode": false,
       "advanced:copy_id": false,
@@ -156,8 +157,12 @@ export class Settings extends AbstractStore<"settings", TypeSettings> {
           settings[key] = cleanedValue as never;
         }
       } else if (key === "appearance:unicode_emoji") {
-        if (UNICODE_EMOJI_PACKS.includes(input[key] as never)) {
-          settings[key] = input[key];
+        // Migrate away from fluent-3d because the asset set is incomplete.
+        const preferredPack =
+          input[key] === "fluent-3d" ? "twemoji" : input[key];
+
+        if (UNICODE_EMOJI_PACKS.includes(preferredPack as never)) {
+          settings[key] = preferredPack;
         }
       } else if (typeof input[key] === expectedType) {
         settings[key] = input[key] as never;

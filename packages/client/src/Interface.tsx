@@ -121,16 +121,18 @@ const Layout = styled("div", {
     display: "flex",
     height: "100%",
     minWidth: 0,
+    background:
+      "radial-gradient(900px 500px at 12% 0%, color-mix(in oklab, var(--cyan) 15%, transparent), transparent 60%), radial-gradient(900px 500px at 92% 0%, color-mix(in oklab, var(--mag) 14%, transparent), transparent 60%), linear-gradient(180deg, var(--bg0), var(--bg1))",
   },
   variants: {
     disconnected: {
       true: {
-        color: "var(--md-sys-color-on-primary-container)",
-        background: "var(--md-sys-color-primary-container)",
+        color: "var(--ink)",
+        background:
+          "linear-gradient(180deg, color-mix(in oklab, var(--red) 16%, var(--bg0)), color-mix(in oklab, var(--red) 10%, var(--bg1)))",
       },
       false: {
-        color: "var(--md-sys-color-outline)",
-        background: "var(--md-sys-color-surface-container-high)",
+        color: "var(--muted)",
       },
     },
   },
@@ -141,7 +143,10 @@ const Layout = styled("div", {
  */
 const Content = styled("div", {
   base: {
-    background: "var(--md-sys-color-surface-container-low)",
+    background: "var(--glass2)",
+    border: "1px solid var(--line)",
+    backdropFilter: "blur(16px)",
+    boxShadow: "0 25px 90px rgba(0, 0, 0, 0.42)",
 
     display: "flex",
     width: "100%",

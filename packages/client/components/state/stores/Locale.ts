@@ -1,7 +1,6 @@
 import {
   Language,
   Languages,
-  browserPreferredLanguage,
   loadAndSwitchLocale,
 } from "@revolt/i18n";
 import type { LocaleOptions } from "@revolt/i18n/Languages";
@@ -48,7 +47,9 @@ export class Locale extends AbstractStore<"locale", TypeLocale> {
    */
   default(): TypeLocale {
     return {
-      lang: browserPreferredLanguage() as Language,
+      // Force a compiled, known-good default locale to avoid hashed
+      // message-id fallbacks in fresh/self-hosted instances.
+      lang: "en" as Language,
       options: {},
     };
   }
@@ -60,6 +61,12 @@ export class Locale extends AbstractStore<"locale", TypeLocale> {
     let lang: Language = input.lang!;
     if (!(lang in Languages)) {
       lang = this.default().lang;
+    }
+
+    // Until all locale catalogs are validated and compiled for this fork,
+    // force English to prevent message-ID/hash tokens from leaking into UI.
+    if (lang !== "en") {
+      lang = "en";
     }
 
     const options: LocaleOptions = {};

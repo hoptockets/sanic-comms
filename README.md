@@ -1,6 +1,6 @@
 <div align="center">
 <h1>
-  Stoat Frontend
+  .Comms Frontend
   
   [![Stars](https://img.shields.io/github/stars/stoatchat/for-web?style=flat-square&logoColor=white)](https://github.com/stoatchat/for-web/stargazers)
   [![Forks](https://img.shields.io/github/forks/stoatchat/for-web?style=flat-square&logoColor=white)](https://github.com/stoatchat/for-web/network/members)
@@ -9,7 +9,7 @@
   [![Contributors](https://img.shields.io/github/contributors/stoatchat/for-web?style=flat-square&logoColor=white)](https://github.com/stoatchat/for-web/graphs/contributors)
   [![License](https://img.shields.io/github/license/stoatchat/for-web?style=flat-square&logoColor=white)](https://github.com/stoatchat/for-web/blob/main/LICENSE)
 </h1>
-The official web client powering https://stoat.chat/app, built with <a href="https://www.solidjs.com/">Solid.js</a> 💖. <br/>
+The web client for `.Comms`, built with <a href="https://www.solidjs.com/">Solid.js</a> 💖. <br/>
 Track the project roadmap on <a href="https://op.stoatinternal.com/projects/revolt-for-web/roadmap">OpenProject</a>.
 </div>
 <br/>
@@ -52,7 +52,31 @@ mise dev
 mise check
 ```
 
-Finally, navigate to http://local.revolt.chat:5173.
+Finally, navigate to http://localhost:5173.
+
+## Local Preview
+
+Use this flow when iterating on `.Comms` branding and UI:
+
+```bash
+# from repository root
+mise install:frozen
+mise build:deps
+cp packages/client/.env.example packages/client/.env
+mise dev
+```
+
+Then open:
+
+- `http://localhost:5173` for the app shell and auth pages
+- `http://localhost:5173/login` for auth-only rebrand checks
+
+To preview the production build locally:
+
+```bash
+mise build
+mise start
+```
 
 ### Pulling in Stoat's brand assets
 
@@ -74,7 +98,7 @@ git submodule deinit packages/client/assets
 
 By default, the client connects to a backend running on the same host (localhost).
 
-If you want the client to connect to the official hosted backend instead, open the .env file at /packages/client/.env and comment out the local URL varaibles like this:
+If you want the client to connect to the hosted `.Comms` backend instead, open `/packages/client/.env` and adjust URL variables like this:
 ```env
 # connect to local Stoat instance
 #VITE_API_URL=http://localhost:14702

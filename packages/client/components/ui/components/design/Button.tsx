@@ -159,11 +159,13 @@ const button = cva({
     alignItems: "center",
     justifyContent: "center",
 
-    fontWeight: 500,
+    fontWeight: 700,
+    letterSpacing: "0.06em",
+    textTransform: "uppercase",
     fontFamily: "inherit",
 
     cursor: "pointer",
-    border: "none",
+    border: "1px solid transparent",
     transition: "var(--transitions-medium) all",
 
     color: "var(--color)",
@@ -175,23 +177,32 @@ const button = cva({
      */
     variant: {
       elevated: {
-        boxShadow: "0 0.5px 1.5px #0004",
-        background: "var(--md-sys-color-surface-container-low)",
+        boxShadow: "0 6px 22px rgba(0, 0, 0, 0.25)",
+        background:
+          "linear-gradient(180deg, color-mix(in oklab, var(--glass2) 85%, white), var(--glass))",
+        borderColor: "var(--line)",
         "--color": "var(--md-sys-color-primary)",
       },
       filled: {
-        background: "var(--md-sys-color-primary)",
+        background:
+          "linear-gradient(135deg, var(--md-sys-color-primary), color-mix(in oklab, var(--md-sys-color-secondary) 55%, var(--md-sys-color-primary)))",
+        borderColor: "color-mix(in oklab, var(--md-sys-color-primary) 55%, var(--line2))",
+        boxShadow: "0 12px 32px color-mix(in oklab, var(--md-sys-color-primary) 30%, transparent)",
         "--color": "var(--md-sys-color-on-primary)",
       },
       tonal: {
-        background: "var(--md-sys-color-secondary-container)",
+        background:
+          "linear-gradient(180deg, color-mix(in oklab, var(--md-sys-color-secondary-container) 88%, white), var(--md-sys-color-secondary-container))",
+        borderColor: "var(--line)",
         "--color": "var(--md-sys-color-on-secondary-container)",
       },
       outlined: {
         border: "1px solid var(--md-sys-color-outline-variant)",
+        background: "color-mix(in oklab, var(--glass2) 82%, transparent)",
         "--color": "var(--md-sys-color-on-surface-variant)",
       },
       text: {
+        background: "transparent",
         "--color": "var(--md-sys-color-primary)",
       },
       _error: {
@@ -359,6 +370,7 @@ const button = cva({
     disabled: {
       true: {
         cursor: "not-allowed",
+        opacity: 0.55,
       },
       false: {},
     },

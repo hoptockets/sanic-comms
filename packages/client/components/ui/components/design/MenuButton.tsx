@@ -95,7 +95,8 @@ const base = cva({
   base: {
     flexShrink: 0,
 
-    fontWeight: 500,
+    fontWeight: 700,
+    letterSpacing: "0.03em",
     fontSize: "15px",
     userSelect: "none",
     cursor: "pointer",
@@ -108,6 +109,8 @@ const base = cva({
     margin: "0 var(--gap-md)",
     padding: "0 var(--gap-md)",
     borderRadius: "var(--borderRadius-xl)",
+    border: "1px solid transparent",
+    transition: "var(--transitions-medium) all",
 
     color: "var(--color)",
     fill: "var(--color)",
@@ -137,11 +140,11 @@ const base = cva({
     },
     attention: {
       normal: {
-        "--color": "var(--md-sys-color-outline)",
+        "--color": "var(--muted)",
         background: "transparent",
       },
       muted: {
-        "--color": "var(--md-sys-color-outline-variant)",
+        "--color": "var(--muted2)",
         background: "transparent",
 
         "& img": {
@@ -149,12 +152,17 @@ const base = cva({
         },
       },
       active: {
-        "--color": "var(--md-sys-color-on-surface)",
-        background: "transparent",
+        "--color": "var(--ink)",
+        background: "color-mix(in oklab, var(--glass2) 70%, transparent)",
+        borderColor: "var(--line)",
       },
       selected: {
         "--color": "var(--md-sys-color-on-primary-container)",
-        background: "var(--md-sys-color-primary-container)",
+        background:
+          "linear-gradient(180deg, color-mix(in oklab, var(--md-sys-color-primary-container) 86%, white), var(--md-sys-color-primary-container))",
+        borderColor: "var(--line2)",
+        boxShadow:
+          "0 10px 24px color-mix(in oklab, var(--md-sys-color-primary) 28%, transparent)",
       },
     },
   },

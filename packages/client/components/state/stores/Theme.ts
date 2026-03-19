@@ -122,12 +122,12 @@ export class Theme extends AbstractStore {
       preset: "you",
       mode: "system",
 
-      m3Accent: "#5470ec",
-      m3Contrast: 0.0,
-      m3Variant: "tonal_spot",
+      m3Accent: "#35DBFF",
+      m3Contrast: 0.15,
+      m3Variant: "expressive",
 
-      interfaceFont: "Inter",
-      monospaceFont: "Fira Code",
+      interfaceFont: "Montserrat",
+      monospaceFont: "IBM Plex Mono",
 
       blur: true,
       messageSize: 14,

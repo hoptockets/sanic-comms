@@ -48,22 +48,20 @@ export function Feedback() {
           </CategoryButton>
         </Link> */}
         <Link
-          href="https://github.com/orgs/stoatchat/discussions/categories/feature-suggestions"
+          href="https://github.com/stoatchat/for-web/issues"
           target="_blank"
         >
           <CategoryButton
             action="external"
             icon={<MdStar {...iconSize(22)} />}
             onClick={() => void 0}
-            description={
-              <Trans>Suggest new Stoat features on GitHub discussions.</Trans>
-            }
+            description={"Share ideas for .Comms features with us."}
           >
             <Trans>Submit feature suggestion</Trans>
           </CategoryButton>
         </Link>
         <Link
-          href="https://github.com/orgs/stoatchat/discussions/categories/feedback"
+          href="https://sanic.one/support"
           target="_blank"
         >
           <CategoryButton
@@ -76,7 +74,7 @@ export function Feedback() {
           </CategoryButton>
         </Link>
         <Link
-          href="https://github.com/stoatchat/for-web/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug"
+          href="https://github.com/stoatchat/for-web/issues"
           target="_blank"
         >
           <CategoryButton
@@ -103,7 +101,7 @@ export function Feedback() {
               }
               icon={<MdGroups3 />}
             >
-              <Trans>Go to the Stoat Lounge</Trans>
+              Go to the .Comms Lounge
             </CategoryButton>
           </Match>
           <Match when={showLoungeButton && !isInLounge}>
@@ -122,7 +120,7 @@ export function Feedback() {
               }
               icon={<MdGroups3 />}
             >
-              <Trans>Join the Stoat Lounge</Trans>
+              Join the .Comms Lounge
             </CategoryButton>
           </Match>
         </Switch>

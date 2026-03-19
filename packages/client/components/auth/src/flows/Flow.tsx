@@ -17,17 +17,39 @@ export const FlowBase = styled("div", {
     flexDirection: "column",
     gap: "var(--gap-lg)",
     flexGrow: 0,
-    background: "var(--md-sys-color-surface-container)",
-    color: "var(--md-sys-color-on-surface)",
-    width: "360px",
-    maxWidth: "360px",
-    maxHeight: "600px",
-    padding: "45px 40px",
-    borderRadius: "32px",
+    background:
+      "radial-gradient(700px 420px at 15% 0%, color-mix(in oklab, var(--cyan) 18%, transparent), transparent 62%), linear-gradient(180deg, var(--glass2), var(--glass))",
+    color: "var(--ink)",
+    width: "440px",
+    maxWidth: "calc(100vw - 32px)",
+    minHeight: "620px",
+    padding: "42px 36px",
+    borderRadius: "26px",
+    border: "1px solid var(--line)",
+    boxShadow: "0 30px 110px rgba(0, 0, 0, 0.55)",
+    backdropFilter: "blur(18px)",
     marginTop: "20px",
     marginBottom: "20px",
     justifySelf: "center",
     marginInline: "auto",
+    justifyContent: "center",
+
+    "& .title": {
+      fontWeight: 800,
+      letterSpacing: "0.04em",
+    },
+    "& .label": {
+      color: "var(--muted)",
+    },
+
+    mdDown: {
+      width: "100%",
+      maxWidth: "100%",
+      minHeight: "unset",
+      padding: "26px 18px",
+      borderRadius: "18px",
+      gap: "var(--gap-md)",
+    },
   },
 });
 

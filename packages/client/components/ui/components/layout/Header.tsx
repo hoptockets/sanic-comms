@@ -18,15 +18,22 @@ export const Header = styled("div", {
     flexShrink: 0,
     padding: "0 16px",
     alignItems: "center",
-    fontWeight: 600,
+    fontWeight: 700,
+    letterSpacing: "0.06em",
+    textTransform: "uppercase",
     userSelect: "none",
     overflow: "hidden",
     height: "48px",
     borderRadius: "var(--borderRadius-lg)",
+    border: "1px solid var(--line)",
 
     color: "var(--md-sys-color-on-surface)",
     fill: "var(--md-sys-color-on-surface)",
 
+    background:
+      "linear-gradient(180deg, color-mix(in oklab, var(--glass2) 88%, white), var(--glass))",
+    backdropFilter: "blur(16px)",
+    boxShadow: "0 12px 45px rgba(0, 0, 0, 0.22)",
     backgroundSize: "cover !important",
     backgroundPosition: "center !important",
     "& svg": {

@@ -119,11 +119,12 @@ const Base = styled("a", {
 
     gap: "16px",
     padding: "13px",
-    borderRadius: "var(--borderRadius-md)",
+    borderRadius: "var(--borderRadius-lg)",
+    border: "1px solid var(--line)",
 
     userSelect: "none",
     cursor: "pointer",
-    transition: "background-color 0.1s ease-in-out",
+    transition: "var(--transitions-medium) all",
 
     display: "flex",
     alignItems: "center",
@@ -131,19 +132,27 @@ const Base = styled("a", {
 
     color: "var(--color)",
     fill: "var(--color)",
+
+    "&:hover": {
+      transform: "translateY(-1px)",
+      borderColor: "var(--line2)",
+    },
   },
   variants: {
     variant: {
       filled: {
-        background: "var(--md-sys-color-primary)",
+        background:
+          "linear-gradient(135deg, var(--md-sys-color-primary), color-mix(in oklab, var(--md-sys-color-secondary) 50%, var(--md-sys-color-primary)))",
         "--color": "var(--md-sys-color-on-primary)",
       },
       tonal: {
-        background: "var(--md-sys-color-secondary-container)",
+        background:
+          "linear-gradient(180deg, color-mix(in oklab, var(--md-sys-color-secondary-container) 84%, white), var(--md-sys-color-secondary-container))",
         "--color": "var(--md-sys-color-on-secondary-container)",
       },
       tertiary: {
-        background: "var(--md-sys-color-tertiary-container)",
+        background:
+          "linear-gradient(180deg, color-mix(in oklab, var(--md-sys-color-tertiary-container) 88%, white), var(--md-sys-color-tertiary-container))",
         "--color": "var(--md-sys-color-on-tertiary-container)",
       },
     },
@@ -175,7 +184,8 @@ const Content = styled("div", {
     flexGrow: 1,
     flexDirection: "column",
 
-    fontWeight: 500,
+    fontWeight: 700,
+    letterSpacing: "0.03em",
     fontSize: "14px",
     gap: "2px",
     whiteSpace: "nowrap",
@@ -190,7 +200,9 @@ const Content = styled("div", {
 const IconWrapper = styled("div", {
   base: {
     fill: "var(--md-sys-color-on-surface)",
-    background: "var(--md-sys-color-surface-dim)",
+    background:
+      "linear-gradient(180deg, color-mix(in oklab, var(--glass2) 85%, white), var(--glass))",
+    border: "1px solid var(--line)",
 
     width: "36px",
     height: "36px",

@@ -26,8 +26,6 @@ import MdPayments from "@material-design-icons/svg/filled/payments.svg?component
 import MdRateReview from "@material-design-icons/svg/filled/rate_review.svg?component-solid";
 import MdSettings from "@material-design-icons/svg/filled/settings.svg?component-solid";
 
-import Wordmark from "../../public/assets/web/wordmark.svg?component-solid";
-
 import { HeaderIcon } from "./common/CommonHeader";
 
 /**
@@ -95,7 +93,7 @@ export function HomePage() {
   const navigate = useNavigate();
   const client = useClient();
 
-  // check if we're stoat.chat; if so, check if the user is in the Lounge
+  // Check if this is the upstream hosted instance and if the user is in Lounge.
   const showLoungeButton = CONFIGURATION.IS_STOAT;
   const isInLounge =
     client()!.servers.get("01F7ZSBSFHQ8TA81725KQCSDDP") !== undefined;
@@ -110,12 +108,19 @@ export function HomePage() {
       </Header>
       <div use:scrollable={{ class: content() }}>
         <Column>
-          <Wordmark
+          <h1
             class={css({
-              width: "160px",
-              fill: "var(--md-sys-color-on-surface)",
+              margin: 0,
+              fontFamily: "Montserrat, Inter, sans-serif",
+              fontSize: "2.2rem",
+              lineHeight: 1,
+              letterSpacing: "0.04em",
+              fontWeight: 800,
+              color: "var(--ink)",
             })}
-          />
+          >
+            .Comms
+          </h1>
         </Column>
         <Buttons>
           <SeparatedColumn>
@@ -148,7 +153,7 @@ export function HomePage() {
                   }
                   icon={<MdGroups3 />}
                 >
-                  <Trans>Go to the Stoat Lounge</Trans>
+                  <Trans>Go to the .Comms Lounge</Trans>
                 </CategoryButton>
               </Match>
               <Match when={showLoungeButton && !isInLounge}>
@@ -169,7 +174,7 @@ export function HomePage() {
                   }
                   icon={<MdGroups3 />}
                 >
-                  <Trans>Join the Stoat Lounge</Trans>
+                  <Trans>Join the .Comms Lounge</Trans>
                 </CategoryButton>
               </Match>
             </Switch>
@@ -177,15 +182,13 @@ export function HomePage() {
               variant="tertiary"
               onClick={() =>
                 window.open(
-                  "https://wiki.revolt.chat/notes/project/financial-support/",
+                  "https://sanic.one/support",
                 )
               }
-              description={
-                <Trans>Support the project by donating - thank you!</Trans>
-              }
+              description={"Need help now? Open the support intake."}
               icon={<MdPayments />}
             >
-              <Trans>Donate to Stoat</Trans>
+              Open .Comms Support
             </CategoryButton>
           </SeparatedColumn>
           <SeparatedColumn>
@@ -199,7 +202,7 @@ export function HomePage() {
                 }
                 icon={<MdExplore />}
               >
-                <Trans>Discover Stoat</Trans>
+                Discover .Comms
               </CategoryButton>
             </Show>
             <CategoryButton
@@ -217,7 +220,7 @@ export function HomePage() {
               }
               icon={<MdRateReview {...iconSize(22)} />}
             >
-              <Trans>Give feedback on Stoat</Trans>
+              Give feedback on .Comms
             </CategoryButton>
             <CategoryButton
               onClick={() => openModal({ type: "settings", config: "user" })}

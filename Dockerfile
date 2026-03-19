@@ -31,6 +31,10 @@ RUN pnpm install --frozen-lockfile
 # Locally: run `git submodule update --init --recursive` before `docker build`.
 COPY packages/ packages/
 
+# Re-run install after source copy because COPY can overwrite per-package
+# node_modules symlinks created by pnpm workspace linking.
+RUN pnpm install --frozen-lockfile
+
 # Build sub-dependencies (stoat.js, livekit-components, lingui plugins, panda css etc)
 RUN pnpm --filter stoat.js build && \
   pnpm --filter solid-livekit-components build && \
@@ -46,6 +50,8 @@ ENV VITE_API_URL=__VITE_API_URL__
 ENV VITE_WS_URL=__VITE_WS_URL__
 ENV VITE_MEDIA_URL=__VITE_MEDIA_URL__
 ENV VITE_PROXY_URL=__VITE_PROXY_URL__
+ENV VITE_GIFBOX_URL=__VITE_GIFBOX_URL__
+ENV VITE_GIPHY_API_KEY=__VITE_GIPHY_API_KEY__
 ENV VITE_HCAPTCHA_SITEKEY=__VITE_HCAPTCHA_SITEKEY__
 ENV VITE_CFG_ENABLE_VIDEO=__VITE_CFG_ENABLE_VIDEO__
 ENV BASE_PATH=/
@@ -73,6 +79,8 @@ ENV VITE_API_URL=""
 ENV VITE_WS_URL=""
 ENV VITE_MEDIA_URL=""
 ENV VITE_PROXY_URL=""
+ENV VITE_GIFBOX_URL=""
+ENV VITE_GIPHY_API_KEY=""
 ENV VITE_HCAPTCHA_SITEKEY=""
 ENV VITE_CFG_ENABLE_VIDEO=""
 ENV REVOLT_PUBLIC_URL=""

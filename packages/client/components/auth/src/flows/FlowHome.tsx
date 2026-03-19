@@ -1,6 +1,5 @@
 import { Match, Show, Switch } from "solid-js";
 
-import { Trans } from "@lingui-solid/solid/macro";
 import { css } from "styled-system/css";
 
 import { useClientLifecycle } from "@revolt/client";
@@ -9,7 +8,6 @@ import { Navigate } from "@revolt/routing";
 import { Button, Column } from "@revolt/ui";
 
 import { useState } from "@revolt/state";
-import Wordmark from "../../../../public/assets/web/wordmark.svg?component-solid";
 
 /**
  * Flow for logging into an account
@@ -27,13 +25,32 @@ export default function FlowHome() {
           </Show>
 
           <Column gap="xl">
-            <Wordmark
+            <h1
               class={css({
-                width: "60%",
-                margin: "auto",
-                fill: "var(--md-sys-color-on-surface)",
+                margin: "0 auto",
+                fontFamily: "Montserrat, Inter, sans-serif",
+                fontWeight: 800,
+                letterSpacing: "0.04em",
+                fontSize: "clamp(2.1rem, 7vw, 3rem)",
+                lineHeight: 1,
+                color: "var(--ink)",
+                textAlign: "center",
               })}
-            />
+            >
+              .Comms
+            </h1>
+            <span
+              class={css({
+                textAlign: "center",
+                letterSpacing: "0.24em",
+                textTransform: "uppercase",
+                fontSize: "0.72rem",
+                color: "var(--muted2)",
+                marginTop: "-8px",
+              })}
+            >
+              comm.sanic.one
+            </span>
 
             <Column>
               <b
@@ -47,36 +64,28 @@ export default function FlowHome() {
                 }}
               >
                 <span>
-                  <Trans>
-                    Find your com
-                    <wbr />
-                    munity,
-                    <br />
-                    connect with the world.
-                  </Trans>
+                  Find your com
+                  <wbr />
+                  munity,
+                  <br />
+                  connect with the world.
                 </span>
               </b>
               <span style={{ "text-align": "center", opacity: "0.5" }}>
-                <Trans>
-                  Stoat is one of the best ways to stay connected with your
-                  friends and community, anywhere, anytime.
-                </Trans>
+                .Comms keeps your teams and communities connected with fast,
+                reliable chat.
               </span>
             </Column>
 
             <Column>
               <a href="/login/auth">
                 <Column>
-                  <Button>
-                    <Trans>Log In</Trans>
-                  </Button>
+                  <Button>Log In</Button>
                 </Column>
               </a>
               <a href="/login/create">
                 <Column>
-                  <Button variant="tonal">
-                    <Trans>Sign Up</Trans>
-                  </Button>
+                  <Button variant="tonal">Sign Up</Button>
                 </Column>
               </a>
             </Column>
@@ -87,9 +96,7 @@ export default function FlowHome() {
       <Match when={isError()}>
         <Switch fallback={"an unknown error occurred"}>
           <Match when={lifecycle.permanentError === "InvalidSession"}>
-            <h1>
-              <Trans>You were logged out!</Trans>
-            </h1>
+            <h1>You were logged out!</h1>
           </Match>
         </Switch>
 
@@ -100,9 +107,7 @@ export default function FlowHome() {
               type: TransitionType.Dismiss,
             })
           }
-        >
-          <Trans>OK</Trans>
-        </Button>
+        >OK</Button>
       </Match>
     </Switch>
   );

@@ -1,1 +1,32 @@
 @layer reset, base, tokens, recipes, utilities;
+
+@layer base {
+  :root {
+    --bg0: #06070b;
+    --bg1: #0a0f1f;
+    --ink: #ecf4ff;
+    --muted: #9caad0;
+    --muted2: #6e7a9a;
+    --line: rgba(236, 244, 255, 0.12);
+    --line2: rgba(236, 244, 255, 0.22);
+    --glass: rgba(10, 14, 26, 0.62);
+    --glass2: rgba(10, 14, 26, 0.86);
+    --cyan: #35dbff;
+    --mag: #d68bff;
+    --lime: #b5ff5a;
+    --amber: #ffb86b;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}

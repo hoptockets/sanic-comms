@@ -65,7 +65,14 @@ export function unicodeEmojiUrl(
   pack: UnicodeEmojiPacks = "fluent-3d",
   text: string,
 ) {
-  return `https://static.stoat.chat/emoji/${pack}/${toCodepoint(text)}.svg?v=1`;
+  const codepoint = toCodepoint(text);
+
+  // Prefer public CDN for twemoji to avoid broken/missing assets on upstream host.
+  if (pack === "twemoji") {
+    return `https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/${codepoint}.svg`;
+  }
+
+  return `https://static.stoat.chat/emoji/${pack}/${codepoint}.svg?v=1`;
 }
 
 /**

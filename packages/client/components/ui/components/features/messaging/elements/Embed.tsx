@@ -28,6 +28,12 @@ export function Embed(props: { embed: MessageEmbed }) {
     ((props.embed as WebsiteEmbed).specialContent?.type === "GIF" ||
       (props.embed as WebsiteEmbed).originalUrl?.startsWith(
         "https://tenor.com",
+      ) ||
+      (props.embed as WebsiteEmbed).originalUrl?.startsWith(
+        "https://giphy.com/gifs",
+      ) ||
+      (props.embed as WebsiteEmbed).originalUrl?.startsWith(
+        "https://www.giphy.com/gifs",
       ));
 
   /**

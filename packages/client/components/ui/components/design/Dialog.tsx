@@ -181,12 +181,16 @@ const Container = styled("div", {
     minWidth: "280px",
     maxWidth: "560px",
     borderRadius: "28px",
+    border: "1px solid var(--line2)",
+    boxShadow: "0 30px 110px rgba(0, 0, 0, 0.55)",
+    backdropFilter: "blur(20px)",
 
     display: "flex",
     flexDirection: "column",
 
     color: "var(--md-sys-color-on-surface)",
-    background: "var(--md-sys-color-surface-container-high)",
+    background:
+      "radial-gradient(900px 520px at 10% 0%, color-mix(in oklab, var(--md-sys-color-primary) 16%, transparent), transparent 65%), linear-gradient(180deg, var(--glass2), var(--glass))",
   },
 });
 

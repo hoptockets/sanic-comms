@@ -8,18 +8,27 @@ const publicFolder = resolve("public");
 const path = resolve("public", "assets");
 const revoltAssets = resolve("assets");
 const fallbackAssets = resolve("scripts", "assets_fallback");
+const useUpstreamAssets = process.env.USE_UPSTREAM_ASSETS === "1";
 
 /**
  * Create the symlink
  */
 async function createSymlink() {
+  if (!useUpstreamAssets) {
+    await lnk(resolve(fallbackAssets), resolve(publicFolder), {
+      rename: "assets",
+    });
+    console.info(`Configured .Comms fallback assets.`);
+    return;
+  }
+
   try {
     await lstat(revoltAssets);
     if ((await readdir(revoltAssets)).length === 0) throw "Empty Directory";
     await lnk(resolve(revoltAssets), resolve(publicFolder), {
       rename: "assets",
     });
-    console.info(`Configured Stoat assets.`);
+    console.info(`Configured .Comms assets.`);
   } catch (error) {
     if (error === "Empty Directory" || error.code === "ENOENT") {
       await lnk(resolve(fallbackAssets), resolve(publicFolder), {

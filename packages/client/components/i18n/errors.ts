@@ -92,6 +92,8 @@ export function useError() {
           return t`Your role ranking is too low to take this action.`;
         case "NotFound":
           return t`Could not find what you requested.`;
+        case "OperationFailed":
+          return t`This action could not be completed. If you are creating an account, try a different email or reset local data.`;
         case "ReachedMaximumBots":
           return t`You've reached your personal bot limit.`;
         case "UsernameTaken":
@@ -148,7 +150,7 @@ export function useError() {
           return err.type + " " + err.location;
 
         default:
-          return t`Uncaught Stoat error: ${err.type}`;
+          return t`Uncaught .Comms error: ${err.type}`;
       }
     }
 

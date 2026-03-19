@@ -37,6 +37,8 @@ import { EditMessage } from "./EditMessage";
  */
 const RE_URL =
   /[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
+const RE_DIRECT_MEDIA_URL =
+  /^https?:\/\/\S+\.(?:gif|webm|mp4)(?:\?\S*)?$/i;
 
 interface Props {
   /**
@@ -82,13 +84,32 @@ export function Message(props: Props) {
   const isOnlyGIF = () =>
     props.message.embeds &&
     props.message.embeds.length === 1 &&
-    props.message.embeds[0].type === "Website" &&
-    ((props.message.embeds[0] as WebsiteEmbed).specialContent?.type === "GIF" ||
-      (props.message.embeds[0] as WebsiteEmbed).originalUrl?.startsWith(
-        "https://tenor.com",
-      )) &&
+    (props.message.embeds[0].type === "Video" ||
+      props.message.embeds[0].type === "Image" ||
+      (props.message.embeds[0].type === "Website" &&
+        (((props.message.embeds[0] as WebsiteEmbed).specialContent?.type ===
+          "GIF" ||
+          (props.message.embeds[0] as WebsiteEmbed).originalUrl?.startsWith(
+            "https://tenor.com",
+          ) ||
+          (props.message.embeds[0] as WebsiteEmbed).originalUrl?.startsWith(
+            "https://giphy.com/gifs",
+          ) ||
+          (props.message.embeds[0] as WebsiteEmbed).originalUrl?.startsWith(
+            "https://www.giphy.com/gifs",
+          ))))) &&
     props.message.content &&
     !props.message.content.replace(RE_URL, "").length;
+
+  /**
+   * Direct media URL fallback when embed extraction fails.
+   */
+  const directMediaUrl = () => {
+    const content = props.message.content?.trim();
+    if (!content) return undefined;
+    if (props.message.embeds?.length) return undefined;
+    return RE_DIRECT_MEDIA_URL.test(content) ? content : undefined;
+  };
 
   /**
    * React with an emoji
@@ -276,6 +297,25 @@ export function Message(props: Props) {
         <Match when={props.editing}>
           <EditMessage message={props.message} />
         </Match>
+        <Match when={directMediaUrl()}>
+          <DirectMedia>
+            <Switch fallback={null}>
+              <Match when={directMediaUrl()!.toLowerCase().includes(".gif")}>
+                <img src={directMediaUrl()!} alt="GIF" />
+              </Match>
+              <Match when={true}>
+                <video
+                  src={directMediaUrl()!}
+                  loop
+                  autoplay
+                  muted
+                  controls
+                  preload="metadata"
+                />
+              </Match>
+            </Switch>
+          </DirectMedia>
+        </Match>
         <Match when={props.message.content && !isOnlyGIF()}>
           <BreakText>
             <Markdown content={props.message.content!} />
@@ -341,6 +381,18 @@ const BreakText = styled("div", {
       overflowX: "auto",
       overflowY: "hidden",
       maxHeight: "100vh",
+    },
+  },
+});
+
+const DirectMedia = styled("div", {
+  base: {
+    "& img, & video": {
+      maxWidth: "420px",
+      maxHeight: "320px",
+      borderRadius: "12px",
+      border: "1px solid var(--line2)",
+      objectFit: "cover",
     },
   },
 });

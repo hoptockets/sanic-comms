@@ -6,6 +6,30 @@ import { SelectedTheme } from "@revolt/state/stores/Theme";
  * @returns CSS Variables
  */
 export function createStoatWebVariables(theme: SelectedTheme) {
+  const hausPalette = theme.darkMode
+    ? {
+        bg0: "#06070B",
+        bg1: "#0A0F1F",
+        ink: "#ECF4FF",
+        muted: "#9CAAD0",
+        muted2: "#6E7A9A",
+        line: "rgba(236, 244, 255, 0.12)",
+        line2: "rgba(236, 244, 255, 0.22)",
+        glass: "rgba(10, 14, 26, 0.62)",
+        glass2: "rgba(10, 14, 26, 0.86)",
+      }
+    : {
+        bg0: "#EFF4FF",
+        bg1: "#DEE9FF",
+        ink: "#0A1222",
+        muted: "#374A73",
+        muted2: "#52648F",
+        line: "rgba(10, 18, 34, 0.15)",
+        line2: "rgba(10, 18, 34, 0.28)",
+        glass: "rgba(255, 255, 255, 0.72)",
+        glass2: "rgba(247, 250, 255, 0.9)",
+      };
+
   return {
     // helper variables
     "--unset-fg": "red",
@@ -37,8 +61,51 @@ export function createStoatWebVariables(theme: SelectedTheme) {
     "--brand-presence-invisible": "#A5A5A5",
 
     // font
-    "--fonts-primary": `"${theme.interfaceFont}", "Inter", sans-serif`,
-    "--fonts-monospace": `"${theme.monospaceFont}", "Jetbrains Mono", sans-serif`,
+    "--fonts-primary": `"${theme.interfaceFont}", "Montserrat", "Inter", sans-serif`,
+    "--fonts-monospace": `"${theme.monospaceFont}", "IBM Plex Mono", "Jetbrains Mono", monospace`,
+
+    // .Comms / HAUS tokens
+    "--bg0": hausPalette.bg0,
+    "--bg1": hausPalette.bg1,
+    "--ink": hausPalette.ink,
+    "--muted": hausPalette.muted,
+    "--muted2": hausPalette.muted2,
+    "--line": hausPalette.line,
+    "--line2": hausPalette.line2,
+    "--glass": hausPalette.glass,
+    "--glass2": hausPalette.glass2,
+    "--shadow": "0 30px 110px rgba(0, 0, 0, 0.55)",
+    "--cyan": "#35DBFF",
+    "--lime": "#B5FF5A",
+    "--mag": "#D68BFF",
+    "--amber": "#FFB86B",
+    "--red": "#FF4D6D",
+
+    // Bridge HAUS look into Material surface tokens
+    "--md-sys-color-surface": hausPalette.bg0,
+    "--md-sys-color-surface-dim": hausPalette.bg1,
+    "--md-sys-color-surface-bright": hausPalette.bg1,
+    "--md-sys-color-surface-container-lowest": hausPalette.bg0,
+    "--md-sys-color-surface-container-low": hausPalette.glass2,
+    "--md-sys-color-surface-container": hausPalette.glass,
+    "--md-sys-color-surface-container-high": hausPalette.glass2,
+    "--md-sys-color-surface-container-highest": hausPalette.glass2,
+    "--md-sys-color-on-surface": hausPalette.ink,
+    "--md-sys-color-on-surface-variant": hausPalette.muted,
+    "--md-sys-color-outline": hausPalette.line2,
+    "--md-sys-color-outline-variant": hausPalette.line,
+    "--md-sys-color-primary": "#35DBFF",
+    "--md-sys-color-on-primary": "#001821",
+    "--md-sys-color-primary-container": "#123347",
+    "--md-sys-color-on-primary-container": "#D8F7FF",
+    "--md-sys-color-secondary": "#D68BFF",
+    "--md-sys-color-on-secondary": "#21102B",
+    "--md-sys-color-secondary-container": "#3A1F4E",
+    "--md-sys-color-on-secondary-container": "#F3DDFF",
+    "--md-sys-color-tertiary": "#B5FF5A",
+    "--md-sys-color-on-tertiary": "#1C2D00",
+    "--md-sys-color-tertiary-container": "#2F4F00",
+    "--md-sys-color-on-tertiary-container": "#E9FFC8",
 
     // load constants
     ...reduceWithPrefix(themeConstants.borderRadius, "--borderRadius-"),

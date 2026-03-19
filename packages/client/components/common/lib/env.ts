@@ -1,7 +1,7 @@
 const DEFAULT_API_URL =
   (import.meta.env.DEV ? import.meta.env.VITE_DEV_API_URL : undefined) ??
   (import.meta.env.VITE_API_URL as string) ??
-  "https://stoat.chat/api";
+  "https://comm.sanic.one/api";
 
 export default {
   /**
@@ -13,14 +13,14 @@ export default {
    */
   DEFAULT_API_URL,
   /**
-   * Whether this is Stoat
+   * Whether this is the historical upstream hosted instance.
    */
   IS_STOAT: [
     // historically...
     "https://api.revolt.chat",
     "https://beta.revolt.chat/api",
     "https://revolt.chat/api",
-    // ... and now:
+    // ... and hosted upstream:
     "https://stoat.chat/api",
   ].includes(DEFAULT_API_URL),
   /**
@@ -29,28 +29,32 @@ export default {
   DEFAULT_WS_URL:
     (import.meta.env.DEV ? import.meta.env.VITE_DEV_WS_URL : undefined) ??
     (import.meta.env.VITE_WS_URL as string) ??
-    "wss://stoat.chat/events",
+    "wss://comm.sanic.one/ws",
   /**
    * What media server to connect to by default.
    */
   DEFAULT_MEDIA_URL:
     (import.meta.env.DEV ? import.meta.env.VITE_DEV_MEDIA_URL : undefined) ??
     (import.meta.env.VITE_MEDIA_URL as string) ??
-    "https://cdn.stoatusercontent.com",
+    "https://comm.sanic.one/autumn",
   /**
    * What proxy server to connect to by default.
    */
   DEFAULT_PROXY_URL:
     (import.meta.env.DEV ? import.meta.env.VITE_DEV_PROXY_URL : undefined) ??
     (import.meta.env.VITE_PROXY_URL as string) ??
-    "https://proxy.stoatusercontent.com",
+    "https://comm.sanic.one/january",
   /**
    * What gifbox server to connect to by default.
    */
   DEFAULT_GIFBOX_URL:
     (import.meta.env.DEV ? import.meta.env.VITE_DEV_GIFBOX_URL : undefined) ??
     (import.meta.env.VITE_GIFBOX_URL as string) ??
-    "https://api.gifbox.me",
+    "https://comm.sanic.one/gifbox",
+  /**
+   * Giphy API key for direct GIF search fallback.
+   */
+  GIPHY_API_KEY: (import.meta.env.VITE_GIPHY_API_KEY as string) ?? "",
   /**
    * hCaptcha site key to use if enabled
    */

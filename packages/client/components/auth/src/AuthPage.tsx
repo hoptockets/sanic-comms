@@ -1,7 +1,6 @@
 import { BiLogosGithub } from "solid-icons/bi";
 import { JSX } from "solid-js";
 
-import { Trans } from "@lingui-solid/solid/macro";
 import { styled } from "styled-system/jsx";
 
 import { Titlebar } from "@revolt/app/interface/desktop/Titlebar";
@@ -21,24 +20,21 @@ const Base = styled("div", {
   base: {
     width: "100%",
     height: "100%",
-    padding: "40px 35px",
+    padding: "32px 30px",
 
     userSelect: "none",
     overflowY: "scroll",
 
-    color: "var(--md-sys-color-on-surface)",
-    background: "var(--md-sys-color-surface)",
-    // background: `var(--url)`,
-    // backgroundPosition: "center",
-    // backgroundRepeat: "no-repeat",
-    // backgroundSize: "cover",
+    color: "var(--ink)",
+    background:
+      "radial-gradient(950px 520px at 12% -8%, color-mix(in oklab, var(--cyan) 20%, transparent), transparent 60%), radial-gradient(900px 560px at 88% 8%, color-mix(in oklab, var(--mag) 17%, transparent), transparent 62%), linear-gradient(180deg, var(--bg0), var(--bg1))",
 
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
 
     mdDown: {
-      padding: "30px 20px",
+      padding: "18px 12px",
     },
   },
 });
@@ -48,13 +44,24 @@ const Base = styled("div", {
  */
 const Nav = styled("div", {
   base: {
-    height: "32px",
+    minHeight: "42px",
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
+    border: "1px solid var(--line)",
+    borderRadius: "999px",
+    background:
+      "linear-gradient(180deg, rgba(10, 14, 26, 0.92), rgba(10, 14, 26, 0.58))",
+    padding: "6px 10px",
+    backdropFilter: "blur(16px)",
 
     textDecoration: "none",
+
+    mdDown: {
+      minHeight: "44px",
+      padding: "6px 8px",
+    },
   },
 });
 
@@ -66,8 +73,23 @@ const NavItems = styled("div", {
     gap: "10px",
     display: "flex",
     alignItems: "center",
+    fontSize: "0.78rem",
+    color: "var(--muted)",
+    textTransform: "uppercase",
+    letterSpacing: "0.08em",
+    fontWeight: 700,
 
-    fontSize: "0.9em",
+    "& a:hover": {
+      color: "var(--ink)",
+    },
+
+    mdDown: {
+      gap: "8px",
+      fontSize: "0.68rem",
+      letterSpacing: "0.05em",
+      flexWrap: "wrap",
+      justifyContent: "center",
+    },
   },
   variants: {
     variant: {
@@ -103,7 +125,7 @@ const Bullet = styled("div", {
   base: {
     height: "5px",
     width: "5px",
-    background: "grey",
+    background: "var(--line2)",
     borderRadius: "50%",
 
     md: {
@@ -148,11 +170,11 @@ export function AuthPage(props: { children: JSX.Element }) {
         <Nav>
           <NavItems variant="stack">
             <NavItems>
-              <LinkWithIcon href="https://github.com/stoatchat" target="_blank">
+              <LinkWithIcon href="https://comm.sanic.one/" target="_blank">
                 <BiLogosGithub size={24} />
               </LinkWithIcon>
               <LinkWithIcon
-                href="https://bsky.app/profile/stoat.chat"
+                href="https://sanic.one/support"
                 target="_blank"
               >
                 <img
@@ -163,19 +185,19 @@ export function AuthPage(props: { children: JSX.Element }) {
             </NavItems>
             <Bullet />
             <NavItems>
-              <a href="https://stoat.chat/about" target="_blank">
-                <Trans>About</Trans>
+              <a href="https://sanic.one/about" target="_blank">
+                About
               </a>
-              <a href="https://stoat.chat/terms" target="_blank">
-                <Trans>Terms of Service</Trans>
+              <a href="https://sanic.one/support" target="_blank">
+                Support
               </a>
-              <a href="https://stoat.chat/privacy" target="_blank">
-                <Trans>Privacy Policy</Trans>
+              <a href="https://sanic.one/privacy" target="_blank">
+                Privacy Policy
               </a>
             </NavItems>
           </NavItems>
           <NavItems variant="hide">
-            <Trans>Image by {"@fakurian"}</Trans>
+            Image by {"@fakurian"}
             <Bullet />
             <a href="https://unsplash.com/" target="_blank" rel="noreferrer">
               unsplash.com
