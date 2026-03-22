@@ -1,6 +1,6 @@
 import { Show } from "solid-js";
 
-import { User } from "stoat.js";
+import { User, UserBadges } from "stoat.js";
 import { styled } from "styled-system/jsx";
 
 import { useTime } from "@revolt/i18n";
@@ -8,6 +8,8 @@ import { Avatar, CategoryButton, IconButton, iconSize } from "@revolt/ui";
 
 import MdCakeFill from "@material-design-icons/svg/filled/cake.svg?component-solid";
 import MdEdit from "@material-design-icons/svg/outlined/edit.svg?component-solid";
+import MdAdminPanelSettings from "@material-design-icons/svg/outlined/admin_panel_settings.svg?component-solid";
+import MdSupportAgent from "@material-design-icons/svg/outlined/support_agent.svg?component-solid";
 
 export function UserSummary(props: {
   user: User;
@@ -53,6 +55,37 @@ export function UserSummary(props: {
               <MdDraw {...iconSize(20)} />
             </ProfileBadges> */}
             <ProfileBadges>
+              <Show
+                when={
+                  props.user.privileged ||
+                  (props.user.badges & UserBadges.CommsAdmin) > 0
+                }
+              >
+                <span
+                  use:floating={{
+                    tooltip: {
+                      placement: "top",
+                      content: props.user.privileged
+                        ? ".Comms Platform Admin"
+                        : ".Comms Admin",
+                    },
+                  }}
+                >
+                  <MdAdminPanelSettings {...iconSize(14)} />
+                </span>
+              </Show>
+              <Show when={props.user.badges & UserBadges.CommsStaff}>
+                <span
+                  use:floating={{
+                    tooltip: {
+                      placement: "top",
+                      content: ".Comms Staff",
+                    },
+                  }}
+                >
+                  <MdSupportAgent {...iconSize(14)} />
+                </span>
+              </Show>
               <span
                 use:floating={{
                   tooltip: {

@@ -1,5 +1,5 @@
 import { createFormControl, createFormGroup } from "solid-forms";
-import { For, Match, Switch } from "solid-js";
+import { For, Match, Switch, createSignal } from "solid-js";
 
 import { Trans, useLingui } from "@lingui-solid/solid/macro";
 import { API, Message as MessageI, Server, User } from "stoat.js";
@@ -55,6 +55,7 @@ export function ReportContentModal(
 ) {
   const { t } = useLingui();
   const { showError } = useModals();
+  const [submitted, setSubmitted] = createSignal(false);
 
   const strings: Record<
     API.ContentReportReason | API.UserReportReason,
@@ -121,7 +122,8 @@ export function ReportContentModal(
                 },
         additional_context: detail,
       });
-      props.onClose();
+      setSubmitted(true);
+      setTimeout(() => props.onClose(), 800);
     } catch (error) {
       showError(error);
     }
@@ -154,7 +156,7 @@ export function ReportContentModal(
             onSubmit();
             return false;
           },
-          isDisabled: !Form2.canSubmit(group),
+          isDisabled: submitted() || !Form2.canSubmit(group),
         },
       ]}
       isDisabled={group.isPending}
@@ -207,6 +209,20 @@ export function ReportContentModal(
             control={group.controls.detail}
             label={t`Give us some detail`}
           />
+          <Switch>
+            <Match when={submitted()}>
+              <small>
+                <Trans>Thanks. Your report was submitted for global moderation review.</Trans>
+              </small>
+            </Match>
+            <Match when={!submitted()}>
+              <small>
+                <Trans>
+                  Reports include a snapshot of the target so moderators can investigate quickly.
+                </Trans>
+              </small>
+            </Match>
+          </Switch>
         </Column>
       </form>
     </Dialog>

@@ -192,7 +192,17 @@ export const ServerSidebar = (props: Props) => {
   }
 
   return (
-    <SidebarBase use:floating={props.menuGenerator(props.server)}>
+    <SidebarBase
+      use:floating={props.menuGenerator(props.server)}
+      style={{
+        ...(props.server.themeAccent
+          ? {
+              "--server-accent": props.server.themeAccent,
+              "border-inline-start": "2px solid var(--server-accent)",
+            }
+          : {}),
+      }}
+    >
       <Switch
         fallback={
           <Header placement="secondary">
@@ -210,7 +220,20 @@ export const ServerSidebar = (props: Props) => {
             image
             placement="secondary"
             style={{
-              background: `url('${props.server.bannerURL}')`,
+              background: (() => {
+                const raw =
+                  props.server.animatedBannerURL ?? props.server.bannerURL;
+                const safe =
+                  raw && !String(raw).includes("undefined")
+                    ? String(raw).replace(/'/g, "%27")
+                    : null;
+                const grad = props.server.themeAccent
+                  ? `${props.server.themeAccent}33`
+                  : "rgba(0,0,0,0.16)";
+                return safe
+                  ? `linear-gradient(180deg, ${grad}, rgba(0,0,0,0.18)), url('${safe}')`
+                  : `linear-gradient(180deg, ${grad}, rgba(0,0,0,0.28))`;
+              })(),
             }}
           >
             <ServerInfo

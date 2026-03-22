@@ -276,6 +276,8 @@ export type Modals =
   | {
       type: "user_profile";
       user: User;
+      /** When opened from a server context, improves Joined / roles accuracy. */
+      member?: ServerMember;
       isPlaceholder?: boolean;
       placeholderProfile?: API.UserProfile;
     }

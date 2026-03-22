@@ -3,6 +3,7 @@ import { SetStoreFunction } from "solid-js/store";
 import { State } from "..";
 
 import { TypeAuth } from "./Auth";
+import { TypeCapabilities } from "./Capabilities";
 import { TypeDraft } from "./Draft";
 import { TypeExperiments } from "./Experiments";
 import { TypeKeybinds } from "./Keybinds";
@@ -18,6 +19,7 @@ import { TypeVoice } from "./Voice";
 
 export type Store = {
   auth: TypeAuth;
+  capabilities: TypeCapabilities;
   draft: TypeDraft;
   experiments: TypeExperiments;
   keybinds: TypeKeybinds;

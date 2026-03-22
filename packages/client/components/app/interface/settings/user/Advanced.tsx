@@ -51,6 +51,47 @@ export default function AdvancedSettings() {
         >
           Show admin panel shortcuts in context menus
         </Checkbox>
+        <Checkbox
+          checked={state.settings.getValue("features:profile_v2")}
+          onChange={(e) =>
+            state.settings.setValue("features:profile_v2", e.currentTarget.checked)
+          }
+        >
+          Enable profile v2 cosmetics and hero popout
+        </Checkbox>
+        <Checkbox
+          checked={state.settings.getValue("features:admin_panel_v1")}
+          onChange={(e) =>
+            state.settings.setValue(
+              "features:admin_panel_v1",
+              e.currentTarget.checked,
+            )
+          }
+        >
+          Enable first-party platform admin dashboard
+        </Checkbox>
+        <Checkbox
+          checked={state.settings.getValue("features:stickers_v1")}
+          onChange={(e) =>
+            state.settings.setValue(
+              "features:stickers_v1",
+              e.currentTarget.checked,
+            )
+          }
+        >
+          Enable stickers beta
+        </Checkbox>
+        <Checkbox
+          checked={state.settings.getValue("features:soundboard_v1")}
+          onChange={(e) =>
+            state.settings.setValue(
+              "features:soundboard_v1",
+              e.currentTarget.checked,
+            )
+          }
+        >
+          Enable soundboard beta
+        </Checkbox>
       </Column>
       <CategoryButtonGroup>
         <For each={AVAILABLE_EXPERIMENTS}>

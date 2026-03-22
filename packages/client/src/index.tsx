@@ -41,6 +41,7 @@ import { Discover } from "./interface/Discover";
 import { Friends } from "./interface/Friends";
 import { HomePage } from "./interface/Home";
 import { ServerHome } from "./interface/ServerHome";
+import { AdminShellPage } from "./interface/AdminShell";
 import { ChannelPage } from "./interface/channels/ChannelPage";
 import "./serviceWorkerInterface";
 
@@ -140,6 +141,7 @@ render(
   () => (
     <StateContext>
       <Router root={MountContext}>
+        <Route path="/admin/comms/*" component={AdminShellPage} />
         <Route path="/login" component={AuthPage as never}>
           <Route path="/delete/:token" component={FlowDeleteAccount} />
           <Route path="/check" component={FlowCheck} />

@@ -63,6 +63,22 @@ interface SettingsDefinition {
    * Whether to include admin panel links in context menus
    */
   "advanced:admin_panel": boolean;
+  /**
+   * Enable upgraded profile v2 visuals.
+   */
+  "features:profile_v2": boolean;
+  /**
+   * Enable first-party platform admin panel.
+   */
+  "features:admin_panel_v1": boolean;
+  /**
+   * Enable stickers authoring and picker flows.
+   */
+  "features:stickers_v1": boolean;
+  /**
+   * Enable soundboard upload and playback surfaces.
+   */
+  "features:soundboard_v1": boolean;
 
   /**
    * Last read changelog index
@@ -94,6 +110,10 @@ const EXPECTED_TYPES: { [K in keyof SettingsDefinition]: ValueType<K> } = {
   "appearance:compact_mode": "boolean",
   "advanced:copy_id": "boolean",
   "advanced:admin_panel": "boolean",
+  "features:profile_v2": "boolean",
+  "features:admin_panel_v1": "boolean",
+  "features:stickers_v1": "boolean",
+  "features:soundboard_v1": "boolean",
   "changelog:last_index": "number",
 };
 
@@ -137,6 +157,10 @@ export class Settings extends AbstractStore<"settings", TypeSettings> {
       "appearance:compact_mode": false,
       "advanced:copy_id": false,
       "advanced:admin_panel": false,
+      "features:profile_v2": true,
+      "features:admin_panel_v1": true,
+      "features:stickers_v1": false,
+      "features:soundboard_v1": false,
     };
   }
 

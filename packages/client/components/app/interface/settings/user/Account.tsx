@@ -8,7 +8,7 @@ import {
   createOwnProfileResource,
 } from "@revolt/client/resources";
 import { useModals } from "@revolt/modal";
-import { CategoryButton, Column, Row, iconSize } from "@revolt/ui";
+import { CategoryButton, Column, Row, Text, iconSize } from "@revolt/ui";
 
 import MdAlternateEmail from "@material-design-icons/svg/outlined/alternate_email.svg?component-solid";
 import MdBlock from "@material-design-icons/svg/outlined/block.svg?component-solid";
@@ -55,6 +55,9 @@ function EditAccount() {
 
   return (
     <CategoryButton.Group>
+      <Text class="label" size="small">
+        <Trans>Identity</Trans>
+      </Text>
       <CategoryButton
         action="chevron"
         onClick={() =>
@@ -181,6 +184,9 @@ function MultiFactorAuth() {
 
   return (
     <CategoryButton.Group>
+      <Text class="label" size="small">
+        <Trans>Security</Trans>
+      </Text>
       <CategoryButton.Collapse
         icon={<MdVerifiedUser {...iconSize(22)} />}
         title={<Trans>Recovery Codes</Trans>}
@@ -290,6 +296,9 @@ function ManageAccount() {
 
   return (
     <CategoryButton.Group>
+      <Text class="label" size="small">
+        <Trans>Danger Zone</Trans>
+      </Text>
       <CategoryButton
         action="chevron"
         disabled={mfa.isLoading}

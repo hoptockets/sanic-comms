@@ -45,9 +45,8 @@ export function AppearanceMenu() {
     <Column gap="lg">
       <MessagePreview>
         <Text>
-          Welcome to the new appearance menu, custom themes are not available
-          just yet but we are looking for feedback on how to best implement
-          them!
+          Tune the interface feel for your account. Flat mode keeps things
+          clean, while Stoat mode keeps the energetic sanic.one accents.
         </Text>
       </MessagePreview>
 
@@ -80,7 +79,7 @@ export function AppearanceMenu() {
           </Button>
         </Row>
 
-        {/* <Row justify="stretch">
+        <Row justify="stretch">
           <Button
             group="connected-start"
             groupActive={state.theme.preset === "stoat"}
@@ -95,7 +94,7 @@ export function AppearanceMenu() {
           >
             <Trans>Material You</Trans>
           </Button>
-        </Row> */}
+        </Row>
 
         <Show when={state.theme.preset === "you"}>
           <Row align justify>
@@ -287,7 +286,7 @@ export function AppearanceMenu() {
 
         <Checkbox checked={state.theme.blur} onChange={state.theme.toggleBlur}>
           <Trans>
-            Enable transparency glass/blur effects (slow on older machines)
+            Enable blur effects for surfaces
           </Trans>
         </Checkbox>
 
@@ -445,7 +444,8 @@ const Preview = styled("div", {
     height: "126px",
     overflow: "hidden",
     borderRadius: "var(--borderRadius-lg)",
-    background: "var(--md-sys-color-surface-container-highest)",
+    border: "1px solid var(--line)",
+    background: "var(--surface-elevated)",
   },
 });
 

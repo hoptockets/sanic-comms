@@ -2,10 +2,11 @@ import { createFormControl, createFormGroup } from "solid-forms";
 
 import { Trans, useLingui } from "@lingui-solid/solid/macro";
 import { API } from "stoat.js";
+import { styled } from "styled-system/jsx";
 
 import { useClient } from "@revolt/client";
 import { CONFIGURATION } from "@revolt/common";
-import { Column, Dialog, DialogProps, Form2 } from "@revolt/ui";
+import { Button, Column, Dialog, DialogProps, Form2, Text } from "@revolt/ui";
 
 import { useModals } from "..";
 import { Modals } from "../types";
@@ -85,7 +86,17 @@ export function ServerIdentityModal(
       isDisabled={group.isPending}
     >
       <form onSubmit={submit}>
-        <Column>
+        <Column gap="md">
+          <Header>
+            <Text class="title" size="large">
+              <Trans>Server identity</Trans>
+            </Text>
+            <Text class="label">
+              <Trans>
+                This nickname and avatar only apply inside this server.
+              </Trans>
+            </Text>
+          </Header>
           <Form2.FileInput
             control={group.controls.avatar}
             accept="image/*"
@@ -98,8 +109,25 @@ export function ServerIdentityModal(
             control={group.controls.nickname}
             placeholder={props.member.user?.displayName}
           />
+          <Button
+            size="small"
+            variant="text"
+            onPress={() => {
+              group.controls.nickname.markDirty(true);
+              group.controls.nickname.setValue("");
+            }}
+          >
+            <Trans>Reset to account display name</Trans>
+          </Button>
         </Column>
       </form>
     </Dialog>
   );
 }
+
+const Header = styled("div", {
+  base: {
+    paddingBottom: "10px",
+    borderBottom: "1px solid var(--line)",
+  },
+});

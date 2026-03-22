@@ -37,13 +37,13 @@ export function SettingsModal(
                 "pointer-events": "all",
                 display: "flex",
                 color: "var(--md-sys-color-on-surface)",
-                background: "var(--md-sys-color-surface-container-highest)",
+                background: "var(--surface-base)",
               }}
-              initial={{ opacity: 0, scale: 1.1 }}
+              initial={{ opacity: 0, scale: 1.02 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.1 }}
+              exit={{ opacity: 0, scale: 1.01 }}
               transition={{
-                duration: 0.3,
+                duration: 0.18,
                 easing: [0.17, 0.67, 0.58, 0.98],
               }}
             >

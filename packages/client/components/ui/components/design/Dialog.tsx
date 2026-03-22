@@ -54,11 +54,11 @@ export function Dialog(props: Props) {
             <Motion.div
               initial={{
                 opacity: 0,
-                y: 20,
+                y: 12,
               }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, easing: [0.05, 0.7, 0.1, 1.0] }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.18, easing: [0.16, 0.84, 0.28, 1.0] }}
             >
               <Container
                 style={{
@@ -177,20 +177,18 @@ Dialog.Scrim = styled("div", {
 
 const Container = styled("div", {
   base: {
-    padding: "24px",
+    padding: "20px",
     minWidth: "280px",
-    maxWidth: "560px",
-    borderRadius: "28px",
-    border: "1px solid var(--line2)",
-    boxShadow: "0 30px 110px rgba(0, 0, 0, 0.55)",
-    backdropFilter: "blur(20px)",
+    maxWidth: "620px",
+    borderRadius: "16px",
+    border: "1px solid var(--line)",
+    boxShadow: "var(--shadow)",
 
     display: "flex",
     flexDirection: "column",
 
     color: "var(--md-sys-color-on-surface)",
-    background:
-      "radial-gradient(900px 520px at 10% 0%, color-mix(in oklab, var(--md-sys-color-primary) 16%, transparent), transparent 65%), linear-gradient(180deg, var(--glass2), var(--glass))",
+    background: "var(--surface-elevated)",
   },
 });
 
@@ -230,6 +228,8 @@ const Actions = styled("div", {
     gap: "8px",
     display: "flex",
     justifyContent: "end",
-    marginBlockStart: "24px",
+    marginBlockStart: "20px",
+    paddingTop: "14px",
+    borderTop: "1px solid var(--line)",
   },
 });

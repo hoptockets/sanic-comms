@@ -5,11 +5,13 @@ import { ServerMember, User } from "stoat.js";
 import { styled } from "styled-system/jsx";
 
 import { UserContextMenu } from "@revolt/app";
+import { useClient } from "@revolt/client";
 import { useModals } from "@revolt/modal";
 
 import MdCancel from "@material-design-icons/svg/filled/cancel.svg?component-solid";
 import MdEdit from "@material-design-icons/svg/filled/edit.svg?component-solid";
 import MdMoreVert from "@material-design-icons/svg/filled/more_vert.svg?component-solid";
+import MdReport from "@material-design-icons/svg/outlined/report.svg?component-solid";
 
 import { Button, IconButton } from "../../design";
 import { dismissFloatingElements } from "../../floating";
@@ -25,6 +27,7 @@ export function ProfileActions(props: {
   member?: ServerMember;
 }) {
   const navigate = useNavigate();
+  const client = useClient();
   const { openModal } = useModals();
 
   /**
@@ -47,6 +50,14 @@ export function ProfileActions(props: {
     dismissFloatingElements();
   }
 
+  function reportProfile() {
+    openModal({
+      type: "report_content",
+      target: props.user,
+      client: client(),
+    });
+  }
+
   return (
     <Actions width={props.width}>
       <Show when={props.user.relationship === "None" && !props.user.bot}>
@@ -67,6 +78,12 @@ export function ProfileActions(props: {
       </Show>
       <Show when={props.user.relationship === "Friend"}>
         <Button onPress={openDm}>Message</Button>
+      </Show>
+      <Show when={!props.user.self}>
+        <Button variant="outlined" onPress={reportProfile}>
+          <MdReport {...iconSize(16)} />
+          Report
+        </Button>
       </Show>
 
       <Show

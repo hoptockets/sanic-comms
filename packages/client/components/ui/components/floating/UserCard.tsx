@@ -1,10 +1,11 @@
-import { JSX } from "solid-js";
+import { JSX, Show } from "solid-js";
 
 import { useQuery } from "@tanstack/solid-query";
 import { cva } from "styled-system/css";
 import { styled } from "styled-system/jsx";
 
 import { useModals } from "@revolt/modal";
+import { useState } from "@revolt/state";
 
 import { Profile } from "../features";
 
@@ -34,13 +35,18 @@ export function UserCard(
     object & { onClose: () => void },
 ) {
   const { openModal } = useModals();
+  const state = useState();
   const query = useQuery(() => ({
     queryKey: ["profile", props.user.id],
     queryFn: () => props.user.fetchProfile(),
   }));
 
   function openFull() {
-    openModal({ type: "user_profile", user: props.user });
+    openModal({
+      type: "user_profile",
+      user: props.user,
+      member: props.member,
+    });
     props.onClose();
   }
 
@@ -60,12 +66,26 @@ export function UserCard(
           bannerUrl={query.data?.animatedBannerURL}
           onClick={openFull}
         />
+        <Show
+          when={state.capabilities.isEnabled(
+            "profile_v3",
+            state.settings.getValue("features:profile_v2"),
+          )}
+        >
+          <Profile.Hero
+            user={props.user}
+            member={props.member}
+            profile={query.data as any}
+            width={2}
+          />
+        </Show>
 
         <Profile.Actions user={props.user} member={props.member} width={2} />
         <Profile.Roles member={props.member} />
-        <Profile.Badges user={props.user} />
+        <Profile.Badges user={props.user} width={2} />
         <Profile.Status user={props.user} />
-        <Profile.Joined user={props.user} member={props.member} />
+        <Profile.Joined user={props.user} member={props.member} width={2} />
+        <Profile.Mutuals user={props.user} />
         <Profile.Bio content={query.data?.content} onClick={openFull} />
       </Grid>
     </div>

@@ -113,12 +113,12 @@ export function Settings(props: SettingsProps & SettingsConfiguration<never>) {
                     }
                     initial={
                       transition() === "normal"
-                        ? { opacity: 0, y: 50 }
+                        ? { opacity: 0, y: 20 }
                         : transition() === "to-child"
                           ? {
-                              x: "100vw",
+                              x: "30vw",
                             }
-                          : { x: "-100vw" }
+                          : { x: "-30vw" }
                     }
                     animate={{
                       opacity: 1,
@@ -130,12 +130,12 @@ export function Settings(props: SettingsProps & SettingsConfiguration<never>) {
                         ? undefined
                         : transition() === "to-child"
                           ? {
-                              x: "-100vw",
+                              x: "-30vw",
                             }
-                          : { x: "100vw" }
+                          : { x: "30vw" }
                     }
                     transition={{
-                      duration: 0.2,
+                      duration: 0.16,
                       easing: [0.17, 0.67, 0.58, 0.98],
                     }}
                   >

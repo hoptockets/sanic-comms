@@ -7,6 +7,7 @@ import { ProfileJoined } from "./ProfileJoined";
 import { ProfileMutuals } from "./ProfileMutuals";
 import { ProfileRoles } from "./ProfileRoles";
 import { ProfileStatus } from "./ProfileStatus";
+import { ProfileHero } from "./ProfileHero";
 
 export const Profile = {
   Actions: ProfileActions,
@@ -14,6 +15,7 @@ export const Profile = {
   Banner: ProfileBanner,
   Bio: ProfileBio,
   Card: ProfileCard,
+  Hero: ProfileHero,
   Joined: ProfileJoined,
   Mutuals: ProfileMutuals,
   Roles: ProfileRoles,

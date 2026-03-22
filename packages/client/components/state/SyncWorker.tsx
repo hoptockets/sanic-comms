@@ -30,6 +30,7 @@ export function SyncWorker() {
       (client) => {
         if (client) {
           state.sync.initialSync(client);
+          state.capabilities.refresh(client);
 
           client.events.addListener("event", handleEvent);
           onCleanup(() => client.events.removeListener("event", handleEvent));

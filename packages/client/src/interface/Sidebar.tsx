@@ -37,7 +37,7 @@ export const Sidebar = (props: {
       style={{
         display: "flex",
         "flex-shrink": 0,
-        background: "var(--glass)",
+        background: "var(--surface-elevated)",
         "border-right": "1px solid var(--line)",
       }}
     >

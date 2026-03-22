@@ -13,6 +13,7 @@ import localforage from "localforage";
 
 import { AbstractStore, Store } from "./stores";
 import { Auth } from "./stores/Auth";
+import { Capabilities } from "./stores/Capabilities";
 import { Draft } from "./stores/Draft";
 import { Experiments } from "./stores/Experiments";
 import { Keybinds } from "./stores/Keybinds";
@@ -49,6 +50,7 @@ export class State {
 
   // define all stores
   auth = new Auth(this);
+  capabilities = new Capabilities(this);
   draft = new Draft(this);
   experiments = new Experiments(this);
   keybinds = new Keybinds(this);

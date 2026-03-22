@@ -87,8 +87,9 @@ export function EditMessage(props: { message: Message }) {
 
 const EditorBox = styled("div", {
   base: {
-    background: "var(--md-sys-color-surface-container-highest)",
+    background: "var(--surface-elevated)",
     color: "var(--md-sys-color-on-surface-container)",
+    border: "1px solid var(--line)",
     borderRadius: "var(--borderRadius-sm)",
     padding: "var(--gap-md)",
   },

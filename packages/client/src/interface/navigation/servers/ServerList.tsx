@@ -17,6 +17,7 @@ import MdAdd from "@material-design-icons/svg/filled/add.svg?component-solid";
 import MdExplore from "@material-design-icons/svg/filled/explore.svg?component-solid";
 import MdHome from "@material-design-icons/svg/filled/home.svg?component-solid";
 import MdSettings from "@material-design-icons/svg/filled/settings.svg?component-solid";
+import MdShield from "@material-design-icons/svg/outlined/shield.svg?component-solid";
 
 import { Tooltip } from "../../../../components/ui/components/floating";
 import { Draggable } from "../../../../components/ui/components/utils/Draggable";
@@ -113,6 +114,10 @@ export const ServerList = (props: Props) => {
 
   // Ref for floating menu
   const [menuButton, setMenuButton] = createSignal<HTMLDivElement>();
+  const showEmployeeAdmin = createMemo(() => {
+    const employeeBadgeBits = 2048 | 4096; // CommsAdmin | CommsStaff
+    return props.user.privileged || (props.user.badges & employeeBadgeBits) !== 0;
+  });
 
   return (
     <ServerListBase>
@@ -177,7 +182,7 @@ export const ServerList = (props: Props) => {
                 <Avatar
                   size={42}
                   // TODO: fix this
-                  src={conversation.iconURL}
+                  src={conversation.animatedIconURL ?? conversation.iconURL}
                   holepunch={conversation.unread ? "top-right" : "none"}
                   overlay={
                     <>
@@ -260,7 +265,7 @@ export const ServerList = (props: Props) => {
                 <a href={state.layout.getLastActiveServerPath(entry.item.id)}>
                   <Avatar
                     size={42}
-                    src={entry.item.iconURL}
+                    src={entry.item.animatedIconURL ?? entry.item.iconURL}
                     holepunch={
                       entry.item.mentions.length ? "top-right" : "none"
                     }
@@ -317,6 +322,13 @@ export const ServerList = (props: Props) => {
           <Avatar size={42} fallback={<MdSettings />} interactive />
         </a>
       </Tooltip>
+      <Show when={showEmployeeAdmin()}>
+        <Tooltip placement="right" content="Employee Admin">
+          <a class={entryContainer()} href="/admin/comms">
+            <Avatar size={42} fallback={<MdShield />} interactive />
+          </a>
+        </Tooltip>
+      </Show>
     </ServerListBase>
   );
 };
@@ -328,6 +340,7 @@ const ServerListBase = styled("div", {
   base: {
     display: "flex",
     flexDirection: "column",
+    background: "var(--surface-elevated)",
 
     fill: "var(--md-sys-color-on-surface)",
   },
@@ -412,7 +425,7 @@ const Shadow = styled("div", {
       marginTop: "-12px",
       position: "absolute",
       background:
-        "linear-gradient(to bottom, transparent, var(--md-sys-color-surface-container-highest))",
+        "linear-gradient(to bottom, transparent, var(--surface-elevated))",
     },
   },
 });

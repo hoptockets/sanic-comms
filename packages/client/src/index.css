@@ -15,6 +15,10 @@
     --mag: #d68bff;
     --lime: #b5ff5a;
     --amber: #ffb86b;
+    --surface-base: var(--bg0);
+    --surface-panel: var(--bg1);
+    --surface-elevated: var(--glass2);
+    --surface-elevated-muted: var(--glass);
   }
 
   a {

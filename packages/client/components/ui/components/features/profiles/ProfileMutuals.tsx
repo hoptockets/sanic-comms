@@ -12,7 +12,7 @@ import { dismissFloatingElements } from "../../floating";
 
 import { ProfileCard } from "./ProfileCard";
 
-export function ProfileMutuals(props: { user: User }) {
+export function ProfileMutuals(props: { user: User; width?: 1 | 2 | 3 }) {
   const client = useClient();
   const { openModal } = useModals();
 
@@ -74,7 +74,7 @@ export function ProfileMutuals(props: { user: User }) {
   return (
     <>
       <Show when={query.data?.users.length}>
-        <ProfileCard isLink onClick={openFriends}>
+        <ProfileCard isLink onClick={openFriends} width={props.width}>
           <Ripple />
 
           <Text class="title" size="large">
@@ -93,8 +93,8 @@ export function ProfileMutuals(props: { user: User }) {
           </Grid>
         </ProfileCard>
       </Show>
-      <Show when={query.data?.users.length}>
-        <ProfileCard isLink onClick={openGroups}>
+      <Show when={query.data?.groups.length}>
+        <ProfileCard isLink onClick={openGroups} width={props.width}>
           <Ripple />
 
           <Text class="title" size="large">

@@ -65,9 +65,10 @@ const base = cva({
     flex: "1 1 800px",
     flexDirection: "row",
     display: "flex",
-    background: "var(--md-sys-color-surface-container-low)",
-    borderStartStartRadius: "30px",
-    borderEndStartRadius: "30px",
+    background: "var(--surface-elevated)",
+    borderStartStartRadius: "20px",
+    borderEndStartRadius: "20px",
+    borderLeft: "1px solid var(--line)",
 
     "& > a": {
       textDecoration: "none",
@@ -80,12 +81,12 @@ const base = cva({
  */
 const InnerContent = styled("div", {
   base: {
-    gap: "13px",
+    gap: "16px",
     minWidth: 0,
     width: "100%",
     display: "flex",
-    maxWidth: "740px",
-    padding: "80px 32px",
+    maxWidth: "820px",
+    padding: "64px 36px",
     justifyContent: "stretch",
     zIndex: 1,
   },
@@ -100,7 +101,7 @@ const InnerColumn = styled("div", {
     gap: "var(--gap-md)",
     display: "flex",
     flexDirection: "column",
-    marginBlockEnd: "80px",
+    marginBlockEnd: "40px",
   },
 });
 
@@ -111,7 +112,7 @@ const CloseAction = styled("div", {
   base: {
     flexGrow: 1,
     flexShrink: 0,
-    padding: "80px 8px",
+    padding: "64px 10px",
     visibility: "visible",
     position: "sticky",
     top: 0,
@@ -121,10 +122,10 @@ const CloseAction = styled("div", {
       marginTop: "4px",
       display: "flex",
       justifyContent: "center",
-      width: "36px",
+      width: "40px",
       fontWeight: 600,
       color: "var(--md-sys-color-on-surface)",
-      fontSize: "0.75rem",
+      fontSize: "0.7rem",
     },
   },
 });

@@ -114,6 +114,16 @@ export function ServerContextMenu(props: { server: Server }) {
    * Open server in Stoat Admin Panel
    */
   function openAdminPanel() {
+    if (
+      state.capabilities.isEnabled(
+        "admin_panel_v1",
+        state.settings.getValue("features:admin_panel_v1"),
+      )
+    ) {
+      window.open(`${location.origin}/admin/comms`, "_blank");
+      return;
+    }
+
     window.open(
       `https://old-admin.stoatinternal.com/panel/inspect/server/${props.server.id}`,
       "_blank",

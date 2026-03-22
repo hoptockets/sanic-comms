@@ -176,6 +176,16 @@ export function UserContextMenu(props: {
    * Open user in Stoat Admin Panel
    */
   function openAdminPanel() {
+    if (
+      state.capabilities.isEnabled(
+        "admin_panel_v1",
+        state.settings.getValue("features:admin_panel_v1"),
+      )
+    ) {
+      window.open(`${location.origin}/admin/comms`, "_blank");
+      return;
+    }
+
     window.open(
       `https://old-admin.stoatinternal.com/panel/inspect/user/${props.user.id}`,
       "_blank",

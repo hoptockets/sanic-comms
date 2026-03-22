@@ -1,4 +1,5 @@
 import {
+  BiSolidBolt,
   BiSolidEnvelope,
   BiSolidFlagAlt,
   BiSolidGroup,
@@ -12,6 +13,7 @@ import { Trans, useLingui } from "@lingui-solid/solid/macro";
 import { Server } from "stoat.js";
 
 import { useUser } from "@revolt/client";
+import { useState } from "@revolt/state";
 import { TextWithEmoji } from "@revolt/markdown";
 import { useModals } from "@revolt/modal";
 import { ColouredText } from "@revolt/ui";
@@ -19,6 +21,7 @@ import { ColouredText } from "@revolt/ui";
 import { SettingsConfiguration } from ".";
 import { ChannelPermissionsEditor } from "./channel/permissions/ChannelPermissionsEditor";
 import Overview from "./server/Overview";
+import { ServerExpressions } from "./server/ServerExpressions";
 import { ListServerBans } from "./server/bans/ListBans";
 import { EmojiList } from "./server/emojis/EmojiList";
 import { ListServerInvites } from "./server/invites/ListServerInvites";
@@ -72,6 +75,8 @@ const Config: SettingsConfiguration<Server> = {
         return <Overview server={server} />;
       case "emojis":
         return <EmojiList server={server} />;
+      case "expressions":
+        return <ServerExpressions server={server} />;
       case "roles":
         return <ServerRoleOverview context={server} />;
       case "invites":
@@ -92,6 +97,16 @@ const Config: SettingsConfiguration<Server> = {
   list(server) {
     const user = useUser();
     const { openModal } = useModals();
+    const state = useState();
+    const showExpressions =
+      state.capabilities.isEnabled(
+        "stickers_v1",
+        state.settings.getValue("features:stickers_v1"),
+      ) ||
+      state.capabilities.isEnabled(
+        "soundboard_v1",
+        state.settings.getValue("features:soundboard_v1"),
+      );
 
     return {
       context: server,
@@ -114,6 +129,12 @@ const Config: SettingsConfiguration<Server> = {
               id: "emojis",
               icon: <BiSolidHappyBeaming size={20} />,
               title: <Trans>Emojis</Trans>,
+            },
+            {
+              hidden: !showExpressions,
+              id: "expressions",
+              icon: <BiSolidBolt size={20} />,
+              title: "Stickers & Soundboard",
             },
           ],
         },

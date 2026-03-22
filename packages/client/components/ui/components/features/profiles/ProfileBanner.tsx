@@ -7,6 +7,11 @@ import { styled } from "styled-system/jsx";
 import { Avatar, Ripple, UserStatus, typography } from "../../design";
 import { Row } from "../../layout";
 
+function safeBannerUrl(url: string | undefined): string | undefined {
+  if (!url || url.includes("undefined")) return undefined;
+  return url;
+}
+
 export function ProfileBanner(props: {
   user: User;
   member?: ServerMember;
@@ -15,10 +20,18 @@ export function ProfileBanner(props: {
   onClickAvatar?: (e: MouseEvent) => void;
   width: 2 | 3;
 }) {
+  const bgUrl = () => safeBannerUrl(props.bannerUrl);
   return (
     <Banner
       style={{
-        "background-image": `linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.7)), url('${props.bannerUrl}')`,
+        ...(bgUrl()
+          ? {
+              "background-image": `linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.7)), url('${bgUrl()!.replace(/'/g, "%27")}')`,
+            }
+          : {
+              "background-image":
+                "linear-gradient(135deg, rgba(88,101,242,0.35), rgba(0,0,0,0.85))",
+            }),
       }}
       isLink={typeof props.onClick !== "undefined"}
       onClick={props.onClick}

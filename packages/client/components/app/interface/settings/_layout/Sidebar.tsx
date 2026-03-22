@@ -102,8 +102,9 @@ const Base = styled("div", {
   base: {
     display: "flex",
     flex: "1 0 218px",
-    paddingLeft: "8px",
+    paddingLeft: "12px",
     justifyContent: "flex-end",
+    background: "var(--surface-base)",
   },
 });
 
@@ -114,9 +115,9 @@ const Content = styled("div", {
   base: {
     minWidth: "230px",
     maxWidth: "300px",
-    padding: "74px 0 8px",
+    padding: "64px 0 10px",
     display: "flex",
-    gap: "2px",
+    gap: "6px",
 
     flexDirection: "column",
 
@@ -141,6 +142,6 @@ const CategoryTitle = styled("span", {
     margin: "0 8px",
     marginInlineEnd: "20px",
 
-    color: "var(--md-sys-color-outline)",
+    color: "var(--muted2)",
   },
 });
