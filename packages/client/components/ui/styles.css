@@ -18,7 +18,11 @@
 body {
   margin: 0;
   color: var(--ink);
-  background: var(--surface-base);
+  background: linear-gradient(
+    145deg,
+    var(--neu-bg-primary),
+    var(--neu-bg-secondary)
+  );
   font-family: var(--fonts-primary);
   line-height: 1.55;
 }
@@ -34,16 +38,28 @@ body::after {
 }
 
 body::before {
-  background: radial-gradient(
-    700px 420px at 12% 0%,
-    color-mix(in oklab, var(--cyan) 12%, transparent),
-    transparent 70%
-  );
+  opacity: 1;
+  background:
+    radial-gradient(
+      720px 420px at 10% 0%,
+      color-mix(in oklab, var(--neu-primary) 20%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      680px 420px at 96% 10%,
+      color-mix(in oklab, var(--cyan) 17%, transparent),
+      transparent 72%
+    );
 }
 
 body::after {
-  mix-blend-mode: normal;
-  background: none;
+  opacity: 0.4;
+  mix-blend-mode: soft-light;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in oklab, var(--neu-shadow-dark) 18%, transparent)
+  );
 }
 
 #root {
@@ -55,10 +71,32 @@ body::after {
   z-index: 1;
 }
 
+.neu-raised {
+  background: linear-gradient(
+    145deg,
+    var(--neu-bg-primary),
+    var(--neu-bg-secondary)
+  );
+  box-shadow: var(--neu-shadow-raised);
+}
+
+.neu-raised-sm {
+  box-shadow: var(--neu-shadow-raised-sm);
+}
+
+.neu-inset {
+  background: linear-gradient(
+    145deg,
+    var(--neu-bg-secondary),
+    var(--neu-bg-primary)
+  );
+  box-shadow: var(--neu-shadow-inset);
+}
+
 /* SANIC.ONE hardening pass for MDUI controls and rails */
 mdui-text-field,
 mdui-select {
-  --mdui-color-surface: var(--surface-elevated);
+  --mdui-color-surface: var(--neu-bg-primary);
   --mdui-color-on-surface: var(--ink);
   --mdui-color-on-surface-variant: var(--muted);
   --mdui-color-primary: var(--cyan);
@@ -71,9 +109,14 @@ mdui-select {
 
 mdui-text-field::part(container),
 mdui-select::part(container) {
-  border: 1px solid var(--line);
-  background: var(--surface-elevated);
-  box-shadow: none;
+  border: 1px solid color-mix(in oklab, var(--line) 75%, transparent);
+  border-radius: var(--neu-radius);
+  background: linear-gradient(
+    145deg,
+    var(--neu-bg-primary),
+    var(--neu-bg-secondary)
+  );
+  box-shadow: var(--neu-shadow-inset);
 }
 
 mdui-navigation-rail {
@@ -90,9 +133,45 @@ mdui-navigation-rail-item::part(container) {
 }
 
 mdui-navigation-rail-item[active]::part(container) {
-  border-color: var(--line2);
-  box-shadow: none;
-  background: color-mix(in oklab, var(--cyan) 16%, var(--surface-elevated));
+  border-color: color-mix(in oklab, var(--neu-primary) 35%, var(--line2));
+  box-shadow: var(--neu-shadow-raised-sm);
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklab, var(--neu-primary) 20%, var(--neu-bg-primary)),
+    color-mix(in oklab, var(--neu-primary-dark) 20%, var(--neu-bg-secondary))
+  );
+}
+
+button,
+input,
+select,
+textarea {
+  border-radius: var(--neu-radius);
+}
+
+button,
+[role="button"] {
+  background: linear-gradient(
+    145deg,
+    var(--neu-bg-primary),
+    var(--neu-bg-secondary)
+  );
+  box-shadow: var(--neu-shadow-raised-sm);
+  transition:
+    transform var(--transitions-fast),
+    box-shadow var(--transitions-fast),
+    background var(--transitions-fast);
+}
+
+button:hover,
+[role="button"]:hover {
+  transform: translateY(-1px);
+}
+
+button:active,
+[role="button"]:active {
+  transform: translateY(1px);
+  box-shadow: var(--neu-shadow-inset);
 }
 
 @media (max-width: 980px) {

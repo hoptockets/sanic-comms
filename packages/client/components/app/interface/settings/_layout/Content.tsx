@@ -65,10 +65,12 @@ const base = cva({
     flex: "1 1 800px",
     flexDirection: "row",
     display: "flex",
-    background: "var(--surface-elevated)",
+    background:
+      "linear-gradient(145deg, var(--neu-bg-primary), var(--neu-bg-secondary))",
     borderStartStartRadius: "20px",
     borderEndStartRadius: "20px",
     borderLeft: "1px solid var(--line)",
+    boxShadow: "var(--neu-shadow-inset)",
 
     "& > a": {
       textDecoration: "none",

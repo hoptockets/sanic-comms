@@ -104,7 +104,8 @@ const Base = styled("div", {
     flex: "1 0 218px",
     paddingLeft: "12px",
     justifyContent: "flex-end",
-    background: "var(--surface-base)",
+    background:
+      "linear-gradient(145deg, var(--neu-bg-primary), var(--neu-bg-secondary))",
   },
 });
 
@@ -118,6 +119,9 @@ const Content = styled("div", {
     padding: "64px 0 10px",
     display: "flex",
     gap: "6px",
+    borderRadius: "var(--neu-radius)",
+    boxShadow: "var(--neu-shadow-raised-sm)",
+    paddingInline: "8px",
 
     flexDirection: "column",
 

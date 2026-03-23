@@ -121,7 +121,8 @@ const Layout = styled("div", {
     display: "flex",
     height: "100%",
     minWidth: 0,
-    background: "var(--surface-base)",
+    background:
+      "linear-gradient(145deg, var(--neu-bg-primary), var(--neu-bg-secondary))",
   },
   variants: {
     disconnected: {
@@ -141,9 +142,10 @@ const Layout = styled("div", {
  */
 const Content = styled("div", {
   base: {
-    background: "var(--surface-panel)",
+    background:
+      "linear-gradient(145deg, var(--neu-bg-primary), var(--neu-bg-secondary))",
     border: "1px solid var(--line)",
-    boxShadow: "var(--shadow)",
+    boxShadow: "var(--neu-shadow-inset)",
 
     display: "flex",
     width: "100%",

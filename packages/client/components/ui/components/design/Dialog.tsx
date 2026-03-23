@@ -180,15 +180,16 @@ const Container = styled("div", {
     padding: "20px",
     minWidth: "280px",
     maxWidth: "620px",
-    borderRadius: "16px",
+    borderRadius: "var(--neu-radius)",
     border: "1px solid var(--line)",
-    boxShadow: "var(--shadow)",
+    boxShadow: "var(--neu-shadow-raised)",
 
     display: "flex",
     flexDirection: "column",
 
     color: "var(--md-sys-color-on-surface)",
-    background: "var(--surface-elevated)",
+    background:
+      "linear-gradient(145deg, var(--neu-bg-primary), var(--neu-bg-secondary))",
   },
 });
 

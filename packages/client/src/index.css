@@ -15,10 +15,26 @@
     --mag: #d68bff;
     --lime: #b5ff5a;
     --amber: #ffb86b;
-    --surface-base: var(--bg0);
-    --surface-panel: var(--bg1);
-    --surface-elevated: var(--glass2);
-    --surface-elevated-muted: var(--glass);
+    --surface-base: #374151;
+    --surface-panel: #1f2937;
+    --surface-elevated: #374151;
+    --surface-elevated-muted: #1f2937;
+    --neu-bg-primary: #374151;
+    --neu-bg-secondary: #1f2937;
+    --neu-shadow-dark: #111827;
+    --neu-shadow-light: #4b5563;
+    --neu-primary: #7c3aed;
+    --neu-primary-dark: #6d28d9;
+    --neu-radius: 14px;
+    --neu-shadow-raised:
+      8px 8px 16px var(--neu-shadow-dark),
+      -8px -8px 16px var(--neu-shadow-light);
+    --neu-shadow-raised-sm:
+      4px 4px 8px var(--neu-shadow-dark),
+      -4px -4px 8px var(--neu-shadow-light);
+    --neu-shadow-inset:
+      inset 4px 4px 8px var(--neu-shadow-dark),
+      inset -4px -4px 8px var(--neu-shadow-light);
   }
 
   a {

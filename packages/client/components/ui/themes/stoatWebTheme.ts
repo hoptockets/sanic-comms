@@ -6,6 +6,20 @@ import { SelectedTheme } from "@revolt/state/stores/Theme";
  * @returns CSS Variables
  */
 export function createStoatWebVariables(theme: SelectedTheme) {
+  const neuPalette = theme.darkMode
+    ? {
+        bgPrimary: "#374151",
+        bgSecondary: "#1F2937",
+        shadowDark: "#111827",
+        shadowLight: "#4B5563",
+      }
+    : {
+        bgPrimary: "#E6E9EF",
+        bgSecondary: "#D1D5DB",
+        shadowDark: "#B8BCC2",
+        shadowLight: "#FFFFFF",
+      };
+
   const hausPalette = theme.darkMode
     ? {
         bg0: "#06070B",
@@ -77,10 +91,23 @@ export function createStoatWebVariables(theme: SelectedTheme) {
     "--shadow": theme.darkMode
       ? "0 10px 30px rgba(0, 0, 0, 0.28)"
       : "0 8px 24px rgba(10, 18, 34, 0.14)",
-    "--surface-base": hausPalette.bg0,
-    "--surface-panel": hausPalette.bg1,
-    "--surface-elevated": hausPalette.glass2,
-    "--surface-elevated-muted": hausPalette.glass,
+    "--surface-base": neuPalette.bgPrimary,
+    "--surface-panel": neuPalette.bgSecondary,
+    "--surface-elevated": neuPalette.bgPrimary,
+    "--surface-elevated-muted": neuPalette.bgSecondary,
+    "--neu-bg-primary": neuPalette.bgPrimary,
+    "--neu-bg-secondary": neuPalette.bgSecondary,
+    "--neu-shadow-dark": neuPalette.shadowDark,
+    "--neu-shadow-light": neuPalette.shadowLight,
+    "--neu-primary": "#7C3AED",
+    "--neu-primary-dark": "#6D28D9",
+    "--neu-radius": "14px",
+    "--neu-shadow-raised":
+      "8px 8px 16px var(--neu-shadow-dark), -8px -8px 16px var(--neu-shadow-light)",
+    "--neu-shadow-raised-sm":
+      "4px 4px 8px var(--neu-shadow-dark), -4px -4px 8px var(--neu-shadow-light)",
+    "--neu-shadow-inset":
+      "inset 4px 4px 8px var(--neu-shadow-dark), inset -4px -4px 8px var(--neu-shadow-light)",
     "--cyan": "#35DBFF",
     "--lime": "#B5FF5A",
     "--mag": "#D68BFF",
@@ -88,14 +115,14 @@ export function createStoatWebVariables(theme: SelectedTheme) {
     "--red": "#FF4D6D",
 
     // Bridge HAUS look into Material surface tokens
-    "--md-sys-color-surface": hausPalette.bg0,
-    "--md-sys-color-surface-dim": hausPalette.bg1,
-    "--md-sys-color-surface-bright": hausPalette.bg1,
-    "--md-sys-color-surface-container-lowest": hausPalette.bg0,
-    "--md-sys-color-surface-container-low": hausPalette.bg1,
-    "--md-sys-color-surface-container": hausPalette.glass2,
-    "--md-sys-color-surface-container-high": hausPalette.glass2,
-    "--md-sys-color-surface-container-highest": hausPalette.glass,
+    "--md-sys-color-surface": neuPalette.bgPrimary,
+    "--md-sys-color-surface-dim": neuPalette.bgSecondary,
+    "--md-sys-color-surface-bright": neuPalette.bgPrimary,
+    "--md-sys-color-surface-container-lowest": neuPalette.bgPrimary,
+    "--md-sys-color-surface-container-low": neuPalette.bgSecondary,
+    "--md-sys-color-surface-container": neuPalette.bgPrimary,
+    "--md-sys-color-surface-container-high": neuPalette.bgPrimary,
+    "--md-sys-color-surface-container-highest": neuPalette.bgSecondary,
     "--md-sys-color-on-surface": hausPalette.ink,
     "--md-sys-color-on-surface-variant": hausPalette.muted,
     "--md-sys-color-outline": hausPalette.line2,
