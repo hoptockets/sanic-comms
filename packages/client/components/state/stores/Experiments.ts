@@ -29,8 +29,8 @@ export const EXPERIMENTS: {
   [key in Experiment]: { title: string; description: string };
 } = {
   gif_picker: {
-    title: "GIF Picker Placeholder",
-    description: "Not available yet.",
+    title: "GIF Picker",
+    description: "Browse and send GIFs from the composer.",
   },
   plugins: {
     title: "Plugins v2 Placeholder",
@@ -94,6 +94,9 @@ export class Experiments extends AbstractStore<"experiments", TypeExperiments> {
         }
       }
     }
+
+    // Force-on: GIF picker should be available for all users.
+    enabled.add("gif_picker");
 
     return {
       enabled: [...enabled],

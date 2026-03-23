@@ -159,7 +159,7 @@ export class Settings extends AbstractStore<"settings", TypeSettings> {
       "advanced:admin_panel": false,
       "features:profile_v2": true,
       "features:admin_panel_v1": true,
-      "features:stickers_v1": false,
+      "features:stickers_v1": true,
       "features:soundboard_v1": false,
     };
   }
@@ -192,6 +192,9 @@ export class Settings extends AbstractStore<"settings", TypeSettings> {
         settings[key] = input[key] as never;
       }
     }
+
+    // Keep stickers enabled by default across migrated clients.
+    settings["features:stickers_v1"] = true;
 
     return settings;
   }
